@@ -22,6 +22,7 @@ const modals = () => {
 
                 windows.forEach(item => {
                     item.style.display = 'none';
+                    item.classList.remove('fadeOut');
                     item.classList.add('animated', 'fadeIn');
                 });
     
@@ -36,6 +37,7 @@ const modals = () => {
                 item.style.display = 'none';
             });
 
+            modal.style.display = "none";
             modal.style.display = "none";
             document.body.style.overflow = "";
             document.body.style.marginRight = `0px`; //remove false scroll
@@ -90,9 +92,10 @@ const modals = () => {
 
     function openByScroll(selector) {
         window.addEventListener('scroll', () => {
-            let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight); //for two mods
+            let scrollHeight = Math.max(document.documentElement.scrollHeight, 
+            document.body.scrollHeight); //for two mods
 
-            if (!btnPressed && (window.pageYOffset + document.documentElement.clientHeight >= scrollHeight - 1)) {
+            if (!btnPressed && (window.pageYOffset + document.documentElement.clientHeight >= scrollHeight - 5)) {
                 document.querySelector(selector).click(); //call click => bindModal
             }
         });

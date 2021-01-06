@@ -367,6 +367,7 @@ h4 {
   padding: 1.5rem 4rem;
   margin-bottom: 7rem;
 }
+
 .main-slider-btn {
   position: absolute;
   top: 50%;
@@ -404,6 +405,7 @@ h4 {
 .promo {
   position: relative;
   padding: 10rem 0 9rem 0;
+  z-index: 2;
 }
 .promo-img {
   position: relative;

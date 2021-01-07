@@ -2,7 +2,8 @@
 
 const forms = () => {
     const form = document.querySelectorAll('form'),
-          inputs = document.querySelectorAll('input');
+          inputs = document.querySelectorAll('input'),
+          upload = document.querySelectorAll('[name="upload"]');
 
     //checkNumInputs('input[name="user_phone"]');
 
@@ -33,7 +34,23 @@ const forms = () => {
         inputs.forEach(item => {
             item.value = '';
         });
+        upload.forEach(item => {
+            item.previousElementSibling.textContent = "Файл не выбран";
+        });
     };
+
+    upload.forEach(item => { //show shorted name of file for users
+        item.addEventListener('input', () => {
+            console.log(item.files[0]);
+            let dots;
+            const arr = item.files[0].name.split('.');
+
+            arr[0].length > 6 ? dots = "..." : dots = ".";
+            const name = arr[0].substring(0, 6) + dots + arr[1];
+            item.previousElementSibling.textContent = name; //get name-block (neighboor/sibling of input)
+
+        });
+    });
 
     form.forEach(item => {
         item.addEventListener('submit', (e) => {
@@ -59,7 +76,7 @@ const forms = () => {
 
             const formData = new FormData(item);
             let api;
-            item.closest('.popup-design') ? api = path.designer : path.question; //closest() - search the element higher on the tree
+            item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question; //closest() - search the element higher on the tree
             console.log(api);
 
             postData(api, formData)
@@ -76,6 +93,9 @@ const forms = () => {
                    clearInputs();
                    setTimeout(() => {
                        statusMessage.remove();
+                       item.style.display = 'block';
+                       item.classList.remove('fadeOutUp');
+                       item.classList.add('fadeInUp'); 
                    }, 5000);
                });
         });

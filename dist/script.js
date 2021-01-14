@@ -4729,8 +4729,8 @@ __webpack_require__.r(__webpack_exports__);
 var showMoreStyles = function showMoreStyles(trigger, wrapper) {
   var btn = document.querySelector(trigger);
   btn.addEventListener('click', function () {
-    Object(_services_requests__WEBPACK_IMPORTED_MODULE_3__["getResource"])('http://localhost:3000/styles').then(function (res) {
-      return createCards(res);
+    Object(_services_requests__WEBPACK_IMPORTED_MODULE_3__["getResource"])('assets/db.json').then(function (res) {
+      return createCards(res.styles);
     }).catch(function (error) {
       return console.log(error);
     });

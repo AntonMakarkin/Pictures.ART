@@ -3,9 +3,11 @@ import {getResource} from '../services/requests';
 const showMoreStyles = (trigger, wrapper) => {
     const btn = document.querySelector(trigger);
 
-    btn.addEventListener('click', function() {
-        getResource('assets/db.json')
-           .then(res => createCards(res.styles))
+    btn.addEventListener('click', async function() {
+        let loader = document.createElement('div');
+        
+        await getResource('http://localhost:3000/styles')
+           .then(res => createCards(res))
            .catch(error => console.log(error));
 
         this.remove();

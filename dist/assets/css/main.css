@@ -623,6 +623,8 @@ h4 {
 }
 .portfolio {
   padding-top: 8rem;
+  padding-bottom: 8rem;
+  min-height: 765px;
 }
 .portfolio h2,
 .portfolio .p-heading {
@@ -652,6 +654,7 @@ h4 {
 .portfolio-wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .portfolio-block {
   width: 20%;
@@ -1436,9 +1439,6 @@ h4 {
   }
   .card-1 .p-heading {
     margin: 2rem 0 3rem 0;
-  }
-  .portfolio-wrapper {
-    justify-content: space-around;
   }
   .portfolio-block {
     width: auto;

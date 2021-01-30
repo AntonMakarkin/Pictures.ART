@@ -45,9 +45,8 @@ const filter = () => {
         });
     };
 
-    buttons.forEach(function(item, i) {
+    buttons.forEach((item, i) => {
         addClick(item, types[i]);
-        console.log(types[i]);
     });
     
     menu.addEventListener('click', (e) => {

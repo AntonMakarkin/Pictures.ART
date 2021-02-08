@@ -2,7 +2,6 @@ const accordion = (triggersSelector) => { //check main.css on 921
     const btns = document.querySelectorAll(triggersSelector),
           blocksSelector = "." + btns[1].nextElementSibling.classList.item(2),
           blocks = document.querySelectorAll(blocksSelector);
-          console.log(blocks);
 
     btns.forEach((btn, i) => {
         btn.addEventListener('click', function() {
@@ -18,7 +17,7 @@ const accordion = (triggersSelector) => { //check main.css on 921
                     block.classList.remove('active-content');
                     block.style.maxHeight = '0px';
                 });
-                this.nextElementSibling.classList.add('active-content'); //except which we want to show
+                this.nextElementSibling.classList.add('active-content'); //except block we want to show
                 this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 80 + "px";
             } else {
                 this.nextElementSibling.style.maxHeight = '0px';

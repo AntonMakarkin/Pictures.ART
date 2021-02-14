@@ -10,7 +10,46 @@ const scrolling = (upSelector) => {
         }
     });
 
-    const element = document.documentElement,
+    //Scrolling with raf
+
+    let links = document.querySelectorAll('[href^="#"]'), //all links which start from #
+        speed = 0.25;
+
+    links.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            let scrollTop = document.documentElement.scrollTop,
+                hash = this.hash,
+                toBlock = document.querySelector(hash).getBoundingClientRect().top, 
+                start = null;
+            
+            requestAnimationFrame(step);
+
+            function step(time) {
+                if (start === null) {
+                    start = time;
+                }
+
+                let progress = time - start, //toBlock < 0 when this element is higher than clientHeight 
+                    pixels = (toBlock < 0 ? Math.max(scrollTop - progress/speed, scrollTop + toBlock) : Math.min(scrollTop + 
+                    progress/speed, scrollTop + toBlock));
+                    console.log(toBlock);
+
+                    document.documentElement.scrollTo(0, pixels);
+
+                    if (pixels != scrollTop + toBlock) {
+                        requestAnimationFrame(step);
+                    } else {
+                        location.hash = hash;
+                    }
+
+            }
+        });
+    });
+
+    //Pure js scrolling
+    /*const element = document.documentElement,
           body = document.body;
 
     const calcScroll = () => {
@@ -64,7 +103,7 @@ const scrolling = (upSelector) => {
         }, timeInterval);
     };
 
-    calcScroll();
+    calcScroll();*/
 };
 
 export default scrolling;
